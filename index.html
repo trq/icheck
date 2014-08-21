@@ -28,7 +28,8 @@
             app.controller("HomeController", function($scope){
                 $scope.check = {
                     a: false,
-                    b: true
+                    b: true,
+                    c: false
                 };
 
                 $scope.radio = {
@@ -68,6 +69,12 @@
                             <strong>Checkbox <span class="faded">check.b</span></strong>
                         </label>
                     </div>
+                    <div>
+                        <label>
+                            <input icheck type="checkbox" ng-model="check.c" id="check.c" ng-disabled="true" />
+                            <strong><s>Checkbox</s> <span class="faded">check.c</span></strong>
+                        </label>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <div>
@@ -80,6 +87,12 @@
                         <label>
                             <input icheck type="radio" ng-model="radio.value" name="radio" value="b" id="radio.b" />
                             <strong>Radio <span class="faded">radio.b</span></strong>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input icheck type="radio" ng-model="radio.value" name="radio" value="c" id="radio.c" ng-disabled="true" />
+                            <strong><s>Radio</s> <span class="faded">radio.c</span></strong>
                         </label>
                     </div>
                 </div>
