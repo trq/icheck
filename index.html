@@ -37,71 +37,72 @@
             });
         })();
     </script>
+    <script>
+        $(document).ready(function() {
+            $('input').on('ifCreated ifClicked ifChanged ifChecked ifUnchecked ifDisabled ifEnabled ifDestroyed', function (event) {
+                $('ul').append('<li><span>#' + this.id + '</span> is ' + event.type.replace('if', '').toLowerCase() + '</li>');
+            });
+        });
+    </script>
+    <style>
+        body { padding-top: 45px; }
+        .faded { color: #bbb; }
+        label { padding: 12px; }
+        label:last-child { margin-bottom: 0; }
+    </style>
 </head>
 <body ng-app="app" class="container" ng-controller="HomeController">
     <div class="row">
         <div class="col-md-6">
-            <div class="form-group">
-                <h2>Check Boxes</h2>
-                <hr />
-                <div>
-                    <label>
-                        <input icheck type="checkbox"
-                               ng-model="check.a" />
-                        <span class="h4">Check Box Label</span>
-                    </label>
-                    <p>
-                        This uses a &lt;span&gt; tag for the label, with the whole control fitted inside an actual
-                        &lt;label&gt; tag. That can be optional if configured with CSS
-                    </p>
+            <div class="row well well-sm">
+                <div class="col-md-6">
+                    <div>
+                        <label>
+                            <input icheck type="checkbox" ng-model="check.a" id="check.a" />
+                            <strong>Checkbox <span class="faded">check.a</span></strong>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input icheck type="checkbox" ng-model="check.b" id="check.b" />
+                            <strong>Checkbox <span class="faded">check.b</span></strong>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label>
+                            <input icheck type="radio" ng-model="radio.value" name="radio" value="a" id="radio.a" />
+                            <strong>Radio <span class="faded">radio.a</span></strong>
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input icheck type="radio" ng-model="radio.value" name="radio" value="b" id="radio.b" />
+                            <strong>Radio <span class="faded">radio.b</span></strong>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
                     <h4>
-                        Status: {{ check.a }}
+                        Check Boxes: {{ check }}
                     </h4>
                 </div>
-                <hr />
-                <div>
-                    <input icheck id="checkbox" type="checkbox"
-                           ng-model="check.b" />
-                    <label for="checkbox">Check Box Label</label>
-                    <p>
-                        This uses the natural &lt;label&gt; tag for a label.
-                    </p>
+                <div class="col-md-6">
                     <h4>
-                        Status: {{ check.b }}
+                        Radio Buttons: {{ radio }}
                     </h4>
                 </div>
             </div>
+
         </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <h2>Radio Buttons</h2>
-                <hr />
-                <div>
-                    <label>
-                        <input icheck type="radio"
-                               name="iCheck"
-                               ng-model="radio.value"
-                               value='a' />
-                        <span class="h4">Radio Button Label</span>
-                    </label>
-                    <p>
-                        This uses a &lt;span&gt; tag for the label, with the whole control fitted inside an actual
-                        &lt;label&gt; tag. That can be optional if configured with CSS
-                    </p>
-                    <h4>
-                        Status: {{ radio }}
-                    </h4>
-                </div>
-                <div>
-                    <input icheck type="radio"
-                           id="radio"
-                           name="iCheck"
-                           ng-model="radio.value"
-                           value='b' />
-                    <label for="radio">Radio Button Label</label>
-                    <p>
-                        This uses the natural &lt;label&gt; tag for a label.
-                    </p>
+        <div class="col-md-4">
+            <div class="panel-primary">
+                <div class="panel-heading">Callbacks</div>
+                <div class="panel-body">
+                    <ul></ul>
                 </div>
             </div>
         </div>
