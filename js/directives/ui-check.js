@@ -6,23 +6,29 @@
     angular.module('ui.check', [])
         .directive('icheck', function ($timeout, $parse) {
             return {
-                link: function($scope, element, $attrs) {
+                require: 'ngModel',
+                link: function($scope, element, $attrs, ngModel) {
                     return $timeout(function() {
-                        var ngModelGetter, value;
-                        ngModelGetter = $parse($attrs['ngModel']);
-                        value = $parse($attrs['ngValue'])($scope);
+                        var value;
+                        value = $attrs['value'];
+
+                        $scope.$watch($attrs['ngModel'], function(newValue){
+                            $(element).icheck('update');
+                        })
+
                         return $(element).icheck({
                             checkboxClass: 'icheckbox_square-blue',
                             radioClass: 'iradio_square-blue'
+
                         }).on('ifChanged', function(event) {
                             if ($(element).attr('type') === 'checkbox' && $attrs['ngModel']) {
                                 $scope.$apply(function() {
-                                    return ngModelGetter.assign($scope, event.target.checked);
+                                    return ngModel.$setViewValue(event.target.checked);
                                 });
                             }
                             if ($(element).attr('type') === 'radio' && $attrs['ngModel']) {
                                 return $scope.$apply(function() {
-                                    return ngModelGetter.assign($scope, value);
+                                    return ngModel.$setViewValue(value);
                                 });
                             }
                         });
