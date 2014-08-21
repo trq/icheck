@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angular || icheck directive</title>
+
+    <script type="text/javascript" src="js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="js/angular-1.2.22.js"></script>
+    <script type="text/javascript" src="js/bootstrap-3.2.0.js"></script>
+    <script type="text/javascript" src="js/icheck-2.0.rc1.js"></script>
+    <!-- load the icheck directive for angular -->
+    <script type="text/javascript" src="js/directives/ui-check.js"></script>
+
+    <!-- load twitter bootstrap just so we can do other styling if we want -->
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <!--
+        load the blue square style for icheck.
+        If you use a different style, you have to change it in the ui.check directive.
+        I have not discovered a way to counteract this, yet.
+    -->
+    <link rel="stylesheet" href="css/check.css" />
+
+    <!-- create an angular application to test icheck with -->
+    <script type="text/javascript">
+        (function() {
+            var app = angular.module('app', ['ui.check']);
+
+            app.controller("HomeController", function($scope){
+                $scope.checkboxes = {};
+                $scope.radios = {};
+            });
+        })();
+    </script>
+</head>
+<body ng-app="app" class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <h2>Check Boxes</h2>
+                <hr />
+                <div>
+                    <label>
+                        <input id="alpha" type="checkbox" ng-model="checkboxes.alpha" icheck />
+                        <span class="h4">Check Box Label</span>
+                    </label>
+                    <p>
+                        This uses a &lt;span&gt; tag for the label, with the whole control fitted inside an actual
+                        &lt;label&gt; tag. That can be optional if configured with CSS
+                    </p>
+                </div>
+                <hr />
+                <div>
+                    <input id="beta" type="checkbox" ng-model="checkboxes.beta" icheck />
+                    <label for="beta">Check Box Label</label>
+                    <p>
+                        This uses the natural &lt;label&gt; tag for a label.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <h2>Radio Buttons</h2>
+                <hr />
+                <div>
+                    <label>
+                        <input type="radio" id="radios.alpha" name="radios" ng-model="radios.alpha" icheck />
+                        <span class="h4">Radio Button Label</span>
+                    </label>
+                    <p>
+                        This uses a &lt;span&gt; tag for the label, with the whole control fitted inside an actual
+                        &lt;label&gt; tag. That can be optional if configured with CSS
+                    </p>
+                </div>
+                <div>
+                    <input type="radio" id="radios.beta" name="radios" ng-model="radios.beta" icheck />
+                    <label for="radios.beta">Radio Button Label</label>
+                    <p>
+                        This uses the natural &lt;label&gt; tag for a label.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
